@@ -11,5 +11,17 @@
 |
 */
 Route::get('dashboard',['as' => 'get.dashboard','uses' => 'AdminController@getDashboard']);
-Route::get('danh-sach-user',['as' => 'get.ListUser','uses' => 'AdminController@getListUser']);
-Route::get('danh-sach-bai-viet',['as' => 'get.ListUser','uses' => 'AdminController@getListPost']);
+Route::group(['prefix' => 'user'], function () {
+    Route::get('list',['as' => 'get.ListUser','uses' => 'AdminController@getListUser']);
+});
+
+Route::group(['prefix' => 'post'], function () {
+    Route::get('list',['as' => 'get.ListPost','uses' => 'AdminController@getListPost']);
+});
+
+Route::group(['prefix' => 'keyword'], function () {
+    Route::get('list',['as' => 'get.ListKeyWord','uses' => 'AdminController@getListKeyWord']);
+    Route::get('disable/{id}',['as' => 'get.DisableKeyWord','uses' => 'AdminController@getDisableKeyWord']);
+    Route::get('active/{id}',['as' => 'get.ActiveKeyWord','uses' => 'AdminController@getActiveKeyWord']);
+    Route::get('delete/{id}',['as' => 'get.DeleteKeyWord','uses' => 'AdminController@getDeleteKeyWord']);
+});
