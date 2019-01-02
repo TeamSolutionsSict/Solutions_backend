@@ -11,3 +11,5 @@
 |
 */
 Route::get('dashboard',['as' => 'get.dashboard','uses' => 'AdminController@getDashboard']);
+Route::get('danh-sach-user',['as' => 'get.ListUser','uses' => 'AdminController@getListUser']);
+Route::get('danh-sach-bai-viet',['as' => 'get.ListUser','uses' => 'AdminController@getListPost']);
