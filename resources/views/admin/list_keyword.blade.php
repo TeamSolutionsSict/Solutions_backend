@@ -41,7 +41,6 @@
                                     <a href="{{ route('get.DisableKeyWord',$item['id']) }}" class="btn btn-info btn-xs"><i class="fa fa-ban"></i> Disable </a>
                                 @elseif($item['status'] == 0)
                                     <a href="{{ route('get.ActiveKeyWord',$item['id']) }}" class="btn btn-success btn-xs"><i class="fa fa-check"></i> Active </a>
-                                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                                 @endif
 
                             </td>

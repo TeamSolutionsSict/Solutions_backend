@@ -4,23 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\KeywordModel;
-<<<<<<< HEAD
 use App\PostModel;
+use App\PostKeyModel;
 use App\User;
-=======
 
->>>>>>> 8ec9c35a322dc4f697616c3718a3d55c68a28a3b
 class AdminController extends Controller
 {
     public function getDashboard(){
 
         return view('admin.index');
     }
-<<<<<<< HEAD
 // Phần quản lý user
-=======
-
->>>>>>> 8ec9c35a322dc4f697616c3718a3d55c68a28a3b
     public function getListUser(){
            $user= User::selectRaw('tb_user.username,tb_user.phone, tb_user.id, tb_user.email, tb_user.avatar, tb_user.status, tb_user.level, count(tb_post.id) as num_post, count(tb_comment.id) as num_comment')
             ->leftjoin('tb_post','tb_user.username','tb_post.username')
@@ -44,11 +38,8 @@ class AdminController extends Controller
           // dd($user);
         return redirect()->back();
     }
-<<<<<<< HEAD
-// Phần quản lý post
-=======
 
->>>>>>> 8ec9c35a322dc4f697616c3718a3d55c68a28a3b
+// Phần quản lý post
      public function getListPost(){
         $post= PostModel::selectRaw('tb_post.id,tb_post.title, tb_post.content, tb_user.username,tb_post.view,tb_post.votes, tb_post.status,tb_post.timepost, count(tb_comment.id) as num_comment')
             ->join('tb_user','tb_user.username','tb_post.username')
@@ -80,6 +71,7 @@ class AdminController extends Controller
 // Phần quản lý Keyword
     public function getListKeyWord(){
         $keyword = KeywordModel::orderBy('id','asc')->get()->toArray();
+        echo $keyword;
         return view('admin.list_keyword',compact('keyword'));
     }
 
@@ -99,30 +91,4 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function getListKeyWord(){
-        $keyword = KeywordModel::orderBy('id','asc')->get()->toArray();
-        return view('admin.list_keyword',compact('keyword'));
-    }
-
-    public function getDisableKeyWord($id){
-        $keyword = KeywordModel::find($id)->first();
-        $keyword->keyword = $keyword->keyword;
-        $keyword->status = 0;
-        $keyword->save();
-        return redirect()->back();
-    }
-
-    public function getActiveKeyWord($id){
-        $keyword = KeywordModel::find($id)->first();
-        $keyword->keyword = $keyword->keyword;
-        $keyword->status = 1;
-        $keyword->save();
-        return redirect()->back();
-    }
-
-    public function getDeleteKeyWord($id){
-        $keyword = KeywordModel::find($id)->first();
-        $keyword->delete();
-        return redirect()->back();
-    }
 }
