@@ -8,6 +8,9 @@ use App\PostModel;
 use App\PostKeyModel;
 use App\User;
 
+use Datetime;
+use Hash;
+
 class AdminController extends Controller
 {
     public function getDashboard(){
@@ -70,9 +73,25 @@ class AdminController extends Controller
 
 // Phần quản lý Keyword
     public function getListKeyWord(){
+        // $date = new Datetime();
+
+        // $idPost = $date->format('d-m-Y').'1'.'nqcuong';
+        // Date+index+admin
+        // dd(Hash::make($idPost));
+
+        //Hiển thị keyword lên table sắp xếp theo thứ tự id
         $keyword = KeywordModel::orderBy('id','asc')->get()->toArray();
-        echo $keyword;
-        return view('admin.list_keyword',compact('keyword'));
+        // Đếm số lượng bài post có chứa keyword
+        //Cho 1 biến đếm dạng mảng(vì có nhiều keyword nên đưa vào mảng)
+        $countPost = array();
+        //Chạy vòng lặp để join tb_keyword với tb_postkey và push vào mảng
+        //Mảng push vào dạng keyword : số lần post để truyền qua view không sợ nhầm lẫn
+        foreach ($keyword as $value) {
+            $countPost[$value['keyword']] = KeywordModel::join('tb_postkey','tb_postkey.id_keyword','=','tb_keyword.id')
+                                    ->where('tb_keyword.id','=',$value['id'])->count();
+        }
+        //Được kết quả cuối cùng và compact vào view
+        return view('admin.list_keyword',compact('keyword','countPost'));
     }
 
     public function getDisableKeyWord($id){
