@@ -54,8 +54,7 @@
                           <th>Comments</th>
                           <th>Ngày post</th>
                           <th>Action</th>
-                           <th>Keyword</th>
-                        
+                          <th>Dự phòng</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -77,10 +76,7 @@
                                     <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                                 @endif
                             </td>
-                          <td>@foreach($value['keyWordName'] as $val)
-                                <span class="label label-success">{{$val}}</span>
-                              @endforeach
-                          </td>
+                          <td>8422</td>
                         </tr>
                         @endforeach
                       </tbody>
