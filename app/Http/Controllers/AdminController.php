@@ -99,12 +99,6 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function getDeleteKeyWord($id){
-        $keyword = KeywordModel::find($id)->first();
-        $keyword->delete();
-        return redirect()->back();
-    }
-
     public function getListKeyWord(){
         $keyword = KeywordModel::orderBy('id','asc')->get()->toArray();
         return view('admin.list_keyword',compact('keyword'));
