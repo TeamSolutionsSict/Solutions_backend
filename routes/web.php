@@ -25,8 +25,8 @@ Route::group(['prefix' => 'post'], function () {
     Route::get('delete/{id}',['as' => 'get.DeletePost','uses' => 'AdminController@getDeletePost']);
 });
 Route::group(['prefix' => 'keyword'], function () {
-    Route::get('list',['as' => 'get.ListKeyWord','uses' => 'AdminController@getListKeyWord']);
-    Route::get('disable/{id}',['as' => 'get.DisableKeyWord','uses' => 'AdminController@getDisableKeyWord']);
-    Route::get('active/{id}',['as' => 'get.ActiveKeyWord','uses' => 'AdminController@getActiveKeyWord']);
-    Route::get('delete/{id}',['as' => 'get.DeleteKeyWord','uses' => 'AdminController@getDeleteKeyWord']);
+    Route::get('list',['as' => 'get.ListKeyWord','uses' => 'KeyWordController@getListKeyWord']);
+    Route::get('disable/{id}',['as' => 'get.DisableKeyWord','uses' => 'KeyWordController@getDisableKeyWord']);
+    Route::get('active/{id}',['as' => 'get.ActiveKeyWord','uses' => 'KeyWordController@getActiveKeyWord']);
+    Route::get('delete/{id}',['as' => 'get.DeleteKeyWord','uses' => 'KeyWordController@getDeleteKeyWord']);
 });
