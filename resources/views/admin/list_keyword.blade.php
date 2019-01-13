@@ -29,13 +29,12 @@
                         </tr>
                       </thead>
                       <tbody>
-
                         @foreach ($keyword as $key => $item) 
                           
                             <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $item['keyword'] }}</td>
-                            <td>{{$countPost[$item['keyword']]}}</td>
+                            <td>Hổng có gì hết nà</td>
                             <td>
                                 <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
                                 @if($item['status'] == 1)

@@ -69,7 +69,7 @@
                           <td>{{$value['num_comment']}}</td>
                           <td>{{$value['timepost']}}</td>
                           <td>
-                                <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                <a href="{{ route('get.QuestionDetails',$value['id']) }}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
                                 @if($value['status'] == 1)
                                     <a href="{{ route('get.DisablePost',$value['id']) }}" class="btn btn-info btn-xs"><i class="fa fa-ban"></i> Disable </a>
                                 @elseif($value['status'] == 0)

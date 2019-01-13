@@ -1,44 +1,36 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\KeywordModel;
 use App\PostModel;
 use App\PostKeyModel;
-use App\User;
-
-use Datetime;
-use Hash;
-
 class AdminController extends Controller
 {
     public function getDashboard(){
-
         return view('admin.index');
     }
-// Phần quản lý user
-    public function getListUser(){
-           $user= User::selectRaw('tb_user.username,tb_user.phone, tb_user.id, tb_user.email, tb_user.avatar, tb_user.status, tb_user.level, count(tb_post.id) as num_post, count(tb_comment.id) as num_comment')
-            ->leftjoin('tb_post','tb_user.username','tb_post.username')
-            ->leftjoin('tb_comment','tb_comment.username','tb_user.username')
-            ->groupBy('tb_user.username','tb_user.phone', 'tb_user.id', 'tb_user.email', 'tb_user.avatar', 'tb_user.status', 'tb_user.level')
-            ->get()->toArray(); 
-        return view('admin.list_user', compact('user'));
+// Phần quản lý Keyword
+    public function getListKeyWord(){
+        $keyword = KeywordModel::orderBy('id','asc')->get()->toArray();
+        return view('admin.list_keyword',compact('keyword'));
     }
-     public function getDisableUser($id){
-        $user = User::find($id)->first();
-
-        $user->status = 0;
-        $user->save();
-        // dd($user);
+    public function getDisableKeyWord($id){
+        $keyword = KeywordModel::find($id)->first();
+        $keyword->keyword = $keyword->keyword;
+        $keyword->status = 0;
+        $keyword->save();
         return redirect()->back();
     }
-    public function getActiveUser($id){
-        $user = User::find($id)->first();
-        $user->status = 1;
-        $user->save();
-          // dd($user);
+    public function getActiveKeyWord($id){
+        $keyword = KeywordModel::find($id)->first();
+        $keyword->keyword = $keyword->keyword;
+        $keyword->status = 1;
+        $keyword->save();
+        return redirect()->back();
+    }
+    public function getDeleteKeyWord($id){
+        $keyword = KeywordModel::find($id)->first();
+        $keyword->delete();
         return redirect()->back();
     }
 }
